@@ -21,7 +21,7 @@ namespace string_pattern_matching.Algorithms
 					}
 					else
 					{
-						textIndex += shiftTable[text[textIndex + patternIndex]];
+						textIndex += shiftTable[text[textIndex + pattern.Length - 1]];
 						break;
 					}
 				}
