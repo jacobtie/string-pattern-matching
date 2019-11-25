@@ -29,7 +29,7 @@ namespace string_pattern_matching.Algorithms
 						}
 						else
 						{
-							var d1 = Math.Max(badShiftTable[text[textIndex + patternIndex]] - 1, 1);
+							var d1 = Math.Max(badShiftTable[text[textIndex + patternIndex]] - 1 - (pattern.Length - patternIndex - 1), 1);
 							var d2 = goodShiftTable[pattern.Length - patternIndex - 1];
 							textIndex += Math.Max(d1, d2);
 						}

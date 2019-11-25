@@ -62,9 +62,9 @@ namespace string_pattern_matching.DataStructures
 			}
 		}
 
-		public int this[int i]
+		public int this[int k]
 		{
-			get => this._table[i - 1];
+			get => this._table[k - 1];
 		}
 	}
 }
