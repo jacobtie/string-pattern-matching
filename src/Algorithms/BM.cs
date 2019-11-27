@@ -5,10 +5,11 @@ namespace string_pattern_matching.Algorithms
 {
 	public static class BM
 	{
-		public static int Run(string text, string pattern)
+		public static (int, int) Run(string text, string pattern)
 		{
 			var badShiftTable = new BadSymbolTable(pattern);
 			var goodShiftTable = new GoodSuffixTable(pattern);
+			var comparisons = 0;
 
 			var textIndex = 0;
 
@@ -17,6 +18,7 @@ namespace string_pattern_matching.Algorithms
 				var patternIndex = pattern.Length - 1;
 				while (patternIndex >= 0)
 				{
+					comparisons++;
 					if (text[textIndex + patternIndex] == pattern[patternIndex])
 					{
 						patternIndex--;
@@ -29,8 +31,10 @@ namespace string_pattern_matching.Algorithms
 						}
 						else
 						{
-							var d1 = Math.Max(badShiftTable[text[textIndex + patternIndex]] - 1 - (pattern.Length - patternIndex - 1), 1);
-							var d2 = goodShiftTable[pattern.Length - patternIndex - 1];
+							var matchedCharacters = pattern.Length - patternIndex - 1;
+							var badShiftValue = badShiftTable[text[textIndex + patternIndex]];
+							var d1 = Math.Max(badShiftValue - matchedCharacters, 1);
+							var d2 = goodShiftTable[matchedCharacters];
 							textIndex += Math.Max(d1, d2);
 						}
 
@@ -40,11 +44,11 @@ namespace string_pattern_matching.Algorithms
 
 				if (patternIndex == -1)
 				{
-					return textIndex;
+					return (textIndex, comparisons);
 				}
 			}
 
-			return -1;
+			return (-1, comparisons);
 		}
 	}
 }

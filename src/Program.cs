@@ -7,7 +7,7 @@ namespace string_pattern_matching
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine(BMH.Run("abaababacbacababaab", "cabab"));
+			Console.WriteLine(BM.Run("CBBAABAABBCABAAABBBABBAAB", "ABBAAB"));
 
 			Console.WriteLine("\nPress enter to exit...");
 			Console.ReadLine();
