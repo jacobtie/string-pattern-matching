@@ -2,7 +2,7 @@ namespace string_pattern_matching.Algorithms
 {
 	public static class BruteForce
 	{
-		public static (int, int) Run(string text, string pattern)
+		public static (int index, int comparisons) Run(string text, string pattern)
 		{
 			var comparisons = 0;
 

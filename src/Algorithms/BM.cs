@@ -5,7 +5,7 @@ namespace string_pattern_matching.Algorithms
 {
 	public static class BM
 	{
-		public static (int, int) Run(string text, string pattern)
+		public static (int index, int comparisons) Run(string text, string pattern)
 		{
 			var badShiftTable = new BadSymbolTable(pattern);
 			var goodShiftTable = new GoodSuffixTable(pattern);
