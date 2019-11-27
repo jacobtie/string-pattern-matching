@@ -1,4 +1,4 @@
-# Assignment II - Graph Algorithms
+# Assignment III - Pattern Matching Algorithms
 
 ## How to Run
 
