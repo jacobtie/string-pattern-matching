@@ -10,14 +10,19 @@ namespace string_pattern_matching
 		{
 			Logger.WriteLine("String Pattern Matching");
 
+			// Variable to hold whether or not to continue the program after each termination
 			string keepPlaying;
 
+			// Loop while the user wants to continue
 			do
 			{
+				// Get user input of text, pattern, and which algorithm to run
 				var (text, pattern, algorithm) = GetUserInput();
 
+				// Run one algorithm if user did not specify to run all
 				if (algorithm != "all" && algorithm != "ALL")
 				{
+					// Get the index and comparisons based on which algorithm the user chose
 					var (index, comparisons) = algorithm switch
 					{
 						var x when x == "BF" || x == "bf" => BruteForce.Run(text, pattern),
@@ -26,10 +31,12 @@ namespace string_pattern_matching
 						_ => throw new Exception("Invalid algorithm string"),
 					};
 
+					// If the pattern was not found
 					if (index == -1)
 					{
 						Logger.Write("\nPattern was not found in the given text. ");
 					}
+					// Else the pattern was found
 					else
 					{
 						Logger.Write($"\nPattern was found at index {index}. ");
@@ -39,14 +46,19 @@ namespace string_pattern_matching
 				}
 				else
 				{
+					// Get the index and comparisons from all algorithms
 					var (indexBF, comparisonsBF) = BruteForce.Run(text, pattern);
 					var (indexBMH, comparisonsBMH) = BMH.Run(text, pattern);
 					var (indexBM, comparisonsBM) = BM.Run(text, pattern);
 
+					// All algorithms should return the same index so we only need to use indexBF
+
+					// If pattern was not found
 					if (indexBF == -1)
 					{
 						Logger.WriteLine("\nPattern was not found in the given text. ");
 					}
+					// Else pattern was found
 					else
 					{
 						Logger.WriteLine($"\nPattern was found at index {indexBF}. ");
@@ -57,6 +69,7 @@ namespace string_pattern_matching
 					Logger.WriteLine($"There were {comparisonsBM} comparisons made by the Boyer-Moore Algorithm.");
 				}
 
+				// Loop until valid input of y/n
 				do
 				{
 					Logger.WriteLine("\nWould you like to repeat program? y/n ");
@@ -84,12 +97,14 @@ namespace string_pattern_matching
 
 			Logger.WriteLine("\nPlease enter the text you would like to search: ");
 
+			// Loop until valid input of text
 			do
 			{
 				text = Logger.ReadLine();
 			}
 			while (text.Length == 0);
 
+			// Loop until valid input of pattern
 			do
 			{
 				Logger.WriteLine("\nPlease enter the pattern you would like to find: ");
@@ -97,6 +112,7 @@ namespace string_pattern_matching
 			}
 			while (pattern.Length == 0);
 
+			// Loop until valid input of algorithm
 			do
 			{
 				Logger.WriteLine("\nPlease enter BF for the Brute Force algorithm, BMH for the Boyer-Moore-Horspool algorithm, BM for the Boyer-Moore algorithm, or ALL for all 3 algorithms: ");
