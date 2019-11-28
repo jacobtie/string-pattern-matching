@@ -66,7 +66,7 @@ namespace string_pattern_matching.Logging
 		}
 
 		/// <summary>
-		/// Asynchronously writes the contents of the log to an output file in the 
+		/// Writes the contents of the log to an output file in the 
 		/// logs directory as a txt file with a filename of "log_" followed by the time in milliseconds
 		/// </summary>
 		/// <returns></returns>
