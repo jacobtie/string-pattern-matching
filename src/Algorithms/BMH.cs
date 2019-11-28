@@ -1,38 +1,50 @@
+using System;
 using string_pattern_matching.DataStructures;
 
 namespace string_pattern_matching.Algorithms
 {
 	public static class BMH
 	{
-		public static int Run(string text, string pattern)
+		public static (int, int, int) Run(string[] textLines, string pattern)
 		{
 			var shiftTable = new BadSymbolTable(pattern);
 
-			var textIndex = 0;
+			var lineIndex = 0;
+			var comps = 0;
 
-			while (textIndex < text.Length - pattern.Length + 1)
+			foreach (var line in textLines)
 			{
-				var patternIndex = pattern.Length - 1;
-				while (patternIndex >= 0)
+				var textIndex = 0;
+
+				while (textIndex < line.Length - pattern.Length + 1)
 				{
-					if (text[textIndex + patternIndex] == pattern[patternIndex])
+					var patternIndex = pattern.Length - 1;
+
+					while (patternIndex >= 0)
 					{
-						patternIndex--;
+						comps++;
+						
+						if (line[textIndex + patternIndex] == pattern[patternIndex])
+						{
+							patternIndex--;
+						}
+						else
+						{
+							textIndex += shiftTable[line[textIndex + pattern.Length - 1]];
+							break;
+						}
 					}
-					else
+
+					if (patternIndex == -1)
 					{
-						textIndex += shiftTable[text[textIndex + pattern.Length - 1]];
-						break;
+						return (lineIndex + 1, textIndex + 1, comps);
 					}
 				}
 
-				if (patternIndex == -1)
-				{
-					return textIndex;
-				}
+				lineIndex++;
 			}
 
-			return -1;
+			return (-1, -1, comps);
 		}
 	}
 }

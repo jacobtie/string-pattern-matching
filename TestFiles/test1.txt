@@ -1,0 +1,5 @@
+This is a test file to find a particular word using a pattern-matching algorithm. 
+We have implemented three of the five options for pattern-matching algorithms that we 
+have learned so far. If they work correctly, then they should return the locations of 
+the word where it is found in the text. Some algorithms are more efficient than others, 
+but all algorithms should be able to locate a word or phrase without fail. 
