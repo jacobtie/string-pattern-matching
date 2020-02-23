@@ -1,4 +1,4 @@
-# Assignment III - Pattern Matching Algorithms
+# Pattern Matching Algorithms
 
 ## How to Run
 
